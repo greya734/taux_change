@@ -1,0 +1,42 @@
+body{
+    background-color: rgb(70, 70, 175);
+    text-decoration: none;
+}
+
+h2{
+    text-align: right;
+    color: #ffffff;
+}
+
+#Input-XPF{
+    text-align: center;
+}
+
+label{
+    color: #ffffff;
+}
+
+#changes{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+input[type="number"]{
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    outline: none;
+    padding: 10px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #6197ed;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+}
+
+input[type="number"]:focus {
+    border-color: #0e5d30;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
