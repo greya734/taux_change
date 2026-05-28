@@ -20,12 +20,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const data = ref(null)
 const loading = ref(true)
 const error = ref(null)
 const xpf = ref(1000)
+let intervalId = null
 
 const xpfEnUsd = computed(() => {
   if (!data.value) return 1
@@ -49,5 +50,12 @@ async function fetchData () {
   }
 }
 
-onMounted(fetchData)
+onMounted(() => {
+  fetchData()
+  intervalId = setInterval(fetchData, 60000)
+})
+
+onUnmounted(() => {
+  clearInterval(intervalId)
+})
 </script>
