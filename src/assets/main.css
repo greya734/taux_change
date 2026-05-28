@@ -1,27 +1,59 @@
-body{
-    background-color: cadetblue;
+body {
+  background-color: cadetblue;
 }
 
+h2{
+  color: aliceblue;
+  text-align: right;
+}
 .convertisseur {
-  max-width: 500px;
+  max-width: 900px;
   margin: 0 auto;
   font-family: sans-serif;
+
+  /* Grille 2 colonnes pour les devise-row */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
 }
 
-.devise-row {
+/* Le titre h2 prend toute la largeur */
+.convertisseur h2 {
+  grid-column: 1 / -1;
+}
+
+/* Le message de chargement prend toute la largeur */
+.convertisseur .loading,
+.convertisseur p {
+  grid-column: 1 / -1;
+}
+
+/* La ligne maître (XPF) prend toute la largeur */
+.devise-row.master {
+  grid-column: 1 / -1;
   display: flex;
+  justify-content: center;
+  text-align: center;
+  background: #16213e;
+  border: 1px solid #0f3460;
+}
+
+/* Toutes les lignes en grille : drapeau | info | input */
+.devise-row {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  margin: 4px 0;
+  margin: 0;
   background: #1a1a2e;
   border-radius: 8px;
   color: white;
 }
 
-.devise-row.master {
-  background: #16213e;
-  border: 1px solid #0f3460;
+.devise-row:not(.master):hover {
+  background: #222244;
+  transition: background 0.15s ease;
 }
 
 .flag {
@@ -29,11 +61,9 @@ body{
   height: 27px;
   object-fit: cover;
   border-radius: 3px;
-  flex-shrink: 0;
 }
 
 .devise-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +81,7 @@ body{
 }
 
 .devise-input {
-  width: 100px;
+  width: 110px;
   text-align: right;
   background: transparent;
   border: none;
@@ -59,6 +89,7 @@ body{
   color: white;
   font-size: 16px;
   outline: none;
+  transition: border-bottom-color 0.2s ease;
 }
 
 .devise-input:focus {
