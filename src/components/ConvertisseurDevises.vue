@@ -43,16 +43,32 @@ let intervalId = null
 // FlagPedia utilise des codes pays ISO 2 lettres
 // On mappe les codes devises → codes pays
 const currencyToCountry = {
-  USD: 'us', EUR: 'eu', GBP: 'gb', JPY: 'jp', AUD: 'au',
-  CAD: 'ca', CHF: 'ch', CNY: 'cn', NZD: 'nz', XPF: 'pf',
-  SGD: 'sg', HKD: 'hk', NOK: 'no', SEK: 'se', DKK: 'dk',
-  MXN: 'mx', BRL: 'br', ZAR: 'za', INR: 'in', KRW: 'kr',
+  USD: 'us',
+  EUR: 'eu',
+  GBP: 'gb',
+  JPY: 'jp',
+  AUD: 'au',
+  CAD: 'ca',
+  CHF: 'ch',
+  CNY: 'cn',
+  NZD: 'nz',
+  XPF: 'pf',
+  SGD: 'sg',
+  HKD: 'hk',
+  NOK: 'no',
+  SEK: 'se',
+  DKK: 'dk',
+  MXN: 'mx',
+  BRL: 'br',
+  ZAR: 'za',
+  INR: 'in',
+  KRW: 'kr'
   // Ajoute d'autres selon tes besoins
 }
 
 function getFlagUrl (currency) {
   const code = currencyToCountry[currency]
-  if (!code) return 'https://flagcdn.com/w40/un.png'  // drapeau ONU par défaut
+  if (!code) return 'https://flagcdn.com/w40/un.png' // drapeau ONU par défaut
   return `https://flagcdn.com/w40/${code}.png`
 }
 
