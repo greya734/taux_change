@@ -1,42 +1,62 @@
-body{
-    background-color: rgb(70, 70, 175);
-    text-decoration: none;
+.convertisseur {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: sans-serif;
 }
 
-h2{
-    text-align: right;
-    color: #ffffff;
+.devise-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  margin: 4px 0;
+  background: #1a1a2e;
+  border-radius: 8px;
+  color: white;
 }
 
-#Input-XPF{
-    text-align: center;
+.devise-row.master {
+  background: #16213e;
+  border: 1px solid #0f3460;
 }
 
-label{
-    color: #ffffff;
+.flag {
+  width: 40px;
+  height: 27px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 
-#changes{
-    display: flex;
-    flex-wrap: nowrap;
+.devise-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-input[type="number"]{
-    appearance: none;
-    -webkit-appearance: none;
-    box-sizing: border-box;
-    outline: none;
-    padding: 10px 14px;
-    border: 1.5px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 15px;
-    color: #ffffff;
-    background-color: #6197ed;
-    transition: border-color 0.2s, box-shadow 0.2s;
-
+.devise-nom {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
 }
 
-input[type="number"]:focus {
-    border-color: #0e5d30;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+.devise-code {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.devise-input {
+  width: 100px;
+  text-align: right;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #444;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.devise-input:focus {
+  border-bottom-color: #e94560;
 }
