@@ -26,7 +26,15 @@
       <div class="devise-info">
         <span class="devise-code">{{ currency }}</span>
       </div>
-      <input type="number" :value="convertViaXPF(rate)" readonly class="devise-input" />
+      <input
+        type="number"
+        min="0"
+        step="any"
+        :value="displayValue(currency, rate)"
+        @input="onCurrencyInput($event, currency, rate)"
+        @blur="editing = null"
+        class="devise-input"
+      />
     </div>
   </div>
 </template>
@@ -80,6 +88,28 @@ const xpfEnUsd = computed(() => {
 function convertViaXPF (rate) {
   const usd = xpf.value * xpfEnUsd.value
   return (usd * rate).toFixed(2)
+}
+
+// Devise en cours de saisie : on affiche sa valeur brute pour ne pas
+// reformater pendant que l'utilisateur tape
+const editing = ref(null)
+const editingValue = ref('')
+
+function displayValue (currency, rate) {
+  return editing.value === currency ? editingValue.value : convertViaXPF(rate)
+}
+
+// Saisie dans une devise quelconque : on recalcule le XPF maître,
+// toutes les autres lignes se mettent à jour automatiquement
+function onCurrencyInput (event, currency, rate) {
+  editing.value = currency
+  editingValue.value = event.target.value
+  const value = parseFloat(event.target.value)
+  if (isNaN(value) || !rate) {
+    xpf.value = 0
+    return
+  }
+  xpf.value = (value / rate) / xpfEnUsd.value
 }
 
 async function fetchData () {
