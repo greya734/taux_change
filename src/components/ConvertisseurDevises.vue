@@ -18,7 +18,7 @@
     <!-- Une ligne par devise -->
     <div
       v-else
-      v-for="(rate, currency) in data.conversion_rates"
+      v-for="[currency, rate] in sortedRates"
       :key="currency"
       class="devise-row"
     >
@@ -79,6 +79,19 @@ function getFlagUrl (currency) {
   if (!code) return 'https://flagcdn.com/w40/un.png' // drapeau ONU par défaut
   return `https://flagcdn.com/w40/${code}.png`
 }
+
+// Devises affichées en premier
+const priorityCurrencies = ['EUR']
+
+const sortedRates = computed(() => {
+  if (!data.value) return []
+  const entries = Object.entries(data.value.conversion_rates)
+  const priority = priorityCurrencies
+    .map(code => entries.find(([currency]) => currency === code))
+    .filter(Boolean)
+  const others = entries.filter(([currency]) => !priorityCurrencies.includes(currency))
+  return [...priority, ...others]
+})
 
 const xpfEnUsd = computed(() => {
   if (!data.value) return 1
